@@ -18,7 +18,7 @@ database is reused.
     'author': 'Persiscal',
     'website': 'https://www.persiscal.com',
     'license': 'LGPL-3',
-    'depends': ['purchase', 'purchase_requisition', 'uom', 'lotoi_approvals'],
+    'depends': ['purchase', 'purchase_stock', 'purchase_requisition', 'uom', 'lotoi_approvals'],
     'data': [
         'views/purchase_views.xml',
     ],

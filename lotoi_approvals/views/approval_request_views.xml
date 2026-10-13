@@ -149,7 +149,6 @@
             <field widget="binary" optional="show" filename="x_studio_binary_field_3vq_1jrvi4piv_filename" name="x_studio_binary_field_3vq_1jrvi4piv" string="Archivo" />
             <field widget="file" optional="show" filename="x_studio_cbu_filename" name="x_studio_cbu" />
             <field widget="file" optional="show" invisible="False" name="x_studio_binary_field_3vq_1jrvi4piv_filename" column_invisible="True" />
-            <field name="warehouse_id" groups="stock.group_stock_multi_warehouses" options="{'no_create_edit': True, 'no_open': True}" column_invisible="parent.has_location == 'no'" required="parent.has_location == 'required'" />
           </list>
           <form string="Products">
             <sheet name="studio_sheet_f96818">
@@ -157,7 +156,6 @@
                 <field name="company_id" invisible="1" />
                 <field name="product_id" />
                 <field name="description" />
-                <field name="warehouse_id" groups="stock.group_stock_multi_warehouses" />
                 <field name="quantity" />
                 <field name="product_uom_id" groups="uom.group_uom" widget="many2one_uom" />
               </group>

@@ -19,7 +19,7 @@ database is reused.
     'author': 'Persiscal',
     'website': 'https://www.persiscal.com',
     'license': 'LGPL-3',
-    'depends': ['approvals', 'hr', 'account', 'mail'],
+    'depends': ['approvals', 'approvals_purchase', 'hr', 'account', 'mail'],
     'data': [
         'security/ir.model.access.csv',
         'views/approval_request_views.xml',
