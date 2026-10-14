@@ -163,9 +163,6 @@
         <field name="arch" type="xml">
 <data>
         <xpath expr="/form//button[@name='print_quotation']" position="replace" />
-        <xpath expr="/form/header/field[@name='state']" position="after">
-          <button string="Crear Solicitud de Pago" type="object" name="action_lotoi_create_payment_request" />
-        </xpath>
         <xpath expr="/form/sheet/group/group/field[@name='partner_id']" position="attributes">
           <attribute name="force_save">0</attribute>
           <attribute name="readonly">False</attribute>

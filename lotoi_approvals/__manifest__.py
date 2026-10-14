@@ -9,8 +9,7 @@ Approvals app.
 
 * Payment detail tables on the request (reimbursements, advances and work progress).
 * "Avance de obra" lines (own model, same table as the one created with Studio).
-* Automations: total amount, approver removal for requests coming from a purchase
-  order, notification to the approver on employee reimbursements.
+* Automation: total amount of the request (sum of the detail lines).
 * "Pago" button: sends the receipts to the requester and marks the request as paid.
 
 All technical names (``x_studio_*``) are kept so the data of the migrated

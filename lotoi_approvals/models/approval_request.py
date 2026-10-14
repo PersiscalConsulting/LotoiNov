@@ -1,11 +1,6 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-# Approver that Lotoi's flows refer to by name (same criterion used by the
-# Studio automations this module replaces).
-APPROVER_NAME = 'Ariel Semeraro'
-REIMBURSEMENT_CATEGORY = 'Reintegro empleados'
-
 
 class ApprovalRequest(models.Model):
     _inherit = 'approval.request'
@@ -46,8 +41,6 @@ class ApprovalRequest(models.Model):
     def create(self, vals_list):
         requests = super().create(vals_list)
         requests._lotoi_update_amount()
-        requests._lotoi_remove_approver_for_purchase_origin()
-        requests._lotoi_notify_reimbursement()
         return requests
 
     def write(self, vals):
@@ -69,45 +62,6 @@ class ApprovalRequest(models.Model):
                 )
             if request.amount != total:
                 request.with_context(lotoi_skip_amount=True).write({'amount': total})
-
-    def _lotoi_remove_approver_for_purchase_origin(self):
-        """Automation "Quitar aprobación de Ariel en solicitudes desde OC".
-
-        The owner already approved the purchase order, so he is not asked again.
-        """
-        for request in self.filtered('x_studio_boolean_field_5ec_1jrvqjeec'):
-            request.approver_ids.filtered(
-                lambda approver: approver.user_id.name == APPROVER_NAME
-            ).unlink()
-
-    def _lotoi_notify_reimbursement(self):
-        """Automation "llamar a ariel": warn the approver about new reimbursements."""
-        user = self.env['res.users'].search([('name', '=', APPROVER_NAME)], limit=1)
-        if not user or not user.partner_id:
-            return
-        for request in self.filtered(
-            lambda r: r.category_id.name == REIMBURSEMENT_CATEGORY
-        ):
-            if user.partner_id not in request.message_partner_ids:
-                request.message_subscribe(partner_ids=[user.partner_id.id])
-            if not user.partner_id.email:
-                continue
-            url = f"{request.get_base_url()}/odoo/approval.request/{request.id}"
-            self.env['mail.mail'].sudo().create({
-                'subject': _('Nuevo reintegro de empleados para revisar'),
-                'email_to': user.partner_id.email,
-                'body_html': (
-                    '<p>Hola Ariel,</p>'
-                    '<p>Se creó un <strong>Reintegro de empleados</strong> '
-                    'que requiere tu atención.</p>'
-                    '<p style="margin:25px 0;"><a href="%s" style="background:#875A7B;'
-                    'color:#ffffff;padding:12px 22px;text-decoration:none;'
-                    'border-radius:4px;font-weight:bold;display:inline-block;">'
-                    'Abrir Reintegro</a></p>'
-                    '<p>También podés ingresar a Odoo y buscar el reintegro desde '
-                    'el menú de Aprobaciones.</p><p>Saludos.</p>'
-                ) % url,
-            }).send()
 
     # ------------------------------------------------------------------
     # "Pago" button (replaces the "Enviar comprobantes" server action)
