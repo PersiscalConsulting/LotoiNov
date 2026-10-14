@@ -1,6 +1,6 @@
 {
     'name': 'Lotoi - Expenses',
-    'version': '19.0.1.0.1',
+    'version': '19.0.1.0.2',
     'category': 'Human Resources/Expenses',
     'summary': 'Replaces the Odoo Studio customizations made on expenses for Lotoi.',
     'description': """
