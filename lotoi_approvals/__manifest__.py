@@ -1,6 +1,6 @@
 {
     'name': 'Lotoi - Approvals',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Human Resources/Approvals',
     'summary': 'Replaces the Odoo Studio customizations made on approvals for Lotoi.',
     'description': """

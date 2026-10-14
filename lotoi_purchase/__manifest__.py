@@ -1,6 +1,6 @@
 {
     'name': 'Lotoi - Purchase',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Inventory/Purchase',
     'summary': 'Replaces the Odoo Studio customizations made on purchases for Lotoi.',
     'description': """
@@ -17,7 +17,7 @@ database is reused.
     'author': 'Persiscal',
     'website': 'https://www.persiscal.com',
     'license': 'LGPL-3',
-    'depends': ['purchase', 'purchase_stock', 'purchase_requisition', 'uom'],
+    'depends': ['purchase', 'purchase_stock', 'purchase_requisition', 'purchase_requisition_stock', 'uom'],
     'data': [
         'views/purchase_views.xml',
     ],
