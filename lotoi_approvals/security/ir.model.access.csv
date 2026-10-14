@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_x_approval_request_line_6a5e3_user,x_approval_request_line_6a5e3 user,model_x_approval_request_line_6a5e3,approvals.group_approval_user,1,1,1,1
-access_x_approval_request_line_6a5e3_manager,x_approval_request_line_6a5e3 manager,model_x_approval_request_line_6a5e3,approvals.group_approval_manager,1,1,1,1

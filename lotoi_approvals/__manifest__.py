@@ -21,7 +21,7 @@ database is reused.
     'license': 'LGPL-3',
     'depends': ['approvals', 'approvals_purchase', 'hr', 'account', 'mail'],
     'data': [
-        'security/ir.model.access.csv',
+        'security/ir_model_access.xml',
         'views/approval_request_views.xml',
     ],
     'installable': True,
