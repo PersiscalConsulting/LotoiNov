@@ -65,9 +65,30 @@ class PurchaseOrder(models.Model):
         manual = self.filtered(lambda order: order._lotoi_has_manual_rate())
         super(PurchaseOrder, self - manual)._compute_currency_rate()
 
+    @api.onchange('lotoi_exchange_rate')
+    def _onchange_lotoi_exchange_rate(self):
+        # The inverse only runs on save; this makes the form follow the rate while it is typed.
+        for order in self:
+            if order.lotoi_exchange_rate <= 0:
+                continue
+            auto_rate = order._lotoi_auto_currency_rate()
+            if auto_rate and float_compare(order.lotoi_exchange_rate, 1 / auto_rate, precision_digits=4) == 0:
+                order.lotoi_manual_currency_rate = False
+                continue
+            order.currency_rate = 1 / order.lotoi_exchange_rate
+            order.lotoi_manual_currency_rate = True
+            order.lotoi_manual_rate_currency_id = order.currency_id
+
     @api.depends('currency_rate')
     def _amount_all(self):
-        return super()._amount_all()
+        super()._amount_all()
+        for order in self:
+            if order._lotoi_has_manual_rate() and order.currency_rate:
+                order.amount_total_cc = order.company_currency_id.round(order.amount_total / order.currency_rate)
+
+    @api.depends('currency_rate')
+    def _compute_tax_totals(self):
+        return super()._compute_tax_totals()
 
     def _prepare_invoice(self):
         invoice_vals = super()._prepare_invoice()
