@@ -46,7 +46,7 @@
         </xpath>
         <xpath expr="//field[@name='reference']" position="after">
           <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/field[@name='company_id']" position="move" />
-          <field name="x_studio_fecha_de_entrega" required="True" options="{&quot;placeholder_field&quot;:&quot;name&quot;}" />
+          <field name="x_studio_fecha_de_entrega" string="Fecha de Entrega" required="True" options="{&quot;placeholder_field&quot;:&quot;name&quot;}" />
           <field name="x_studio_obra" />
         </xpath>
         <xpath expr="//field[@name='picking_type_id']" position="attributes">
@@ -131,7 +131,7 @@
         </xpath>
         <xpath expr="//field[@name='user_id']" position="after">
           <field name="product_id" optional="show" />
-          <field name="x_studio_fecha_de_entrega" optional="show" width="150" />
+          <field name="x_studio_fecha_de_entrega" string="Fecha de Entrega" optional="show" width="150" />
         </xpath>
         <xpath expr="//field[@name='date_end']" position="attributes">
           <attribute name="column_invisible">True</attribute>
@@ -290,7 +290,7 @@
           <attribute name="string">Solicitado por</attribute>
         </xpath>
         <xpath expr="//field[@name='user_id']" position="after">
-          <field optional="show" name="x_studio_reference" />
+          <field optional="show" name="x_studio_reference" string="Reference" />
         </xpath>
         <xpath expr="//field[@name='activity_ids']" position="after">
           <field name="currency_id" width="70" />
@@ -309,7 +309,7 @@
           <attribute name="width">30</attribute>
         </xpath>
         <xpath expr="//field[@name='user_id']" position="after">
-          <field optional="show" name="x_studio_reference_1" />
+          <field optional="show" name="x_studio_reference_1" string="Reference" />
         </xpath>
         <xpath expr="//field[@name='invoice_status']" position="attributes">
           <attribute name="column_invisible">True</attribute>
@@ -329,7 +329,7 @@
         <xpath expr="//field[@name='user_id']" position="replace" />
         <xpath expr="//field[@name='partner_id']" position="replace" />
         <xpath expr="//search[1]/field[@name='name']" position="before">
-          <field name="x_studio_reference_1" />
+          <field name="x_studio_reference_1" string="Reference" />
         </xpath>
       </data>
         </field>
@@ -346,7 +346,7 @@
         <xpath expr="//field[@name='user_id']" position="replace" />
         <xpath expr="//field[@name='partner_id']" position="replace" />
         <xpath expr="//search[1]/field[@name='name']" position="before">
-          <field name="x_studio_reference_1" />
+          <field name="x_studio_reference_1" string="Reference" />
         </xpath>
       </data>
         </field>

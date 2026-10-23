@@ -20,18 +20,18 @@ class ApprovalRequest(models.Model):
         string='Estado', default='Pendiente',
     )
     x_studio_one2many_field_940_1jsplgfm1 = fields.One2many(
-        'approval.product.line', 'approval_request_id', string='Product Line')
+        'approval.product.line', 'approval_request_id', string='Product Line (detalle 1)')
     x_studio_one2many_field_3nj_1jsplsjig = fields.One2many(
-        'approval.product.line', 'approval_request_id', string='Product Line')
+        'approval.product.line', 'approval_request_id', string='Product Line (detalle 2)')
     x_studio_product_line = fields.One2many(
-        'x_approval_request_line_6a5e3', 'x_approval_request_id', string='Avance de obra')
+        'x_approval_request_line_6a5e3', 'x_approval_request_id', string='Avance de obra (líneas)')
     x_studio_related_field_i5_1jtolsuit = fields.Selection(
         related='x_studio_one2many_field_940_1jsplgfm1.x_studio_medio_de_pago',
         string='Medio De Pago', readonly=True,
     )
     x_studio_related_field_3r6_1juvp20kp = fields.Char(
         related='x_studio_one2many_field_940_1jsplgfm1.x_studio_reference',
-        string='Reference', readonly=True,
+        string='Reference (detalle)', readonly=True,
     )
 
     # ------------------------------------------------------------------

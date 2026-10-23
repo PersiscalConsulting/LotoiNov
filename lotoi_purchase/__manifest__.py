@@ -1,6 +1,6 @@
 {
     'name': 'Lotoi - Purchase',
-    'version': '19.0.1.1.0',
+    'version': '19.0.1.1.1',
     'category': 'Inventory/Purchase',
     'summary': 'Replaces the Odoo Studio customizations made on purchases for Lotoi.',
     'description': """

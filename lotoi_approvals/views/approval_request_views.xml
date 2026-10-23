@@ -88,10 +88,10 @@
                 <field name="company_id" column_invisible="True" />
                 <field name="product_id" column_invisible="True" />
                 <field name="description" />
-                <field optional="show" name="x_studio_importe_1" sum="Suma de Importe" />
+                <field optional="show" name="x_studio_importe_1" string="Importe" sum="Suma de Importe" />
                 <field optional="show" name="x_studio_reference" />
                 <field name="x_studio_currency_id" column_invisible="True" />
-                <field widget="file" optional="show" filename="x_studio_archivo_filename" name="x_studio_archivo" />
+                <field widget="file" optional="show" filename="x_studio_archivo_filename" name="x_studio_archivo" string="Archivo" />
                 <field widget="file" optional="show" invisible="False" name="x_studio_archivo_filename" column_invisible="True" />
               </list>
             </field>
@@ -100,9 +100,9 @@
             <field name="x_studio_one2many_field_3nj_1jsplsjig" string="Product Line">
               <list editable="bottom" string="Products">
                 <field name="company_id" column_invisible="True" />
-                <field optional="show" name="x_studio_empleado" width="170" />
+                <field optional="show" name="x_studio_empleado" string="Empleado" width="170" />
                 <field name="description" width="250" />
-                <field optional="show" name="x_studio_importe_2" sum="Suma de Importe" />
+                <field optional="show" name="x_studio_importe_2" string="Importe" sum="Suma de Importe" />
                 <field optional="show" name="x_studio_cantidad_de_cuotas_1" string="Cantidad cuotas" />
                 <field optional="show" name="x_studio_ultimo_adelantoprestamo" />
                 <field name="x_studio_currency_id" column_invisible="True" />
@@ -118,11 +118,11 @@
                 <field optional="show" name="x_studio_forma_de_pago" />
                 <field optional="show" name="x_studio_condicion_de_pago" />
                 <field name="x_name" />
-                <field optional="show" name="x_studio_importe" sum="Suma de Importe" />
+                <field optional="show" name="x_studio_importe" string="Importe" sum="Suma de Importe" />
                 <field optional="show" name="x_studio_liberando" />
                 <field optional="show" name="x_studio_acumulando" />
                 <field optional="show" name="x_studio_obra" />
-                <field widget="file" optional="show" filename="x_studio_archivo_filename" name="x_studio_archivo" />
+                <field widget="file" optional="show" filename="x_studio_archivo_filename" name="x_studio_archivo" string="Archivo" />
                 <field widget="file" optional="show" invisible="False" name="x_studio_archivo_filename" column_invisible="True" />
                 <field name="x_studio_currency_id" column_invisible="True" />
               </list>
@@ -140,7 +140,7 @@
             <field optional="show" name="x_studio_n_fc" />
             <field optional="show" name="x_studio_medio_de_pago" invisible="False" required="False" column_invisible="False" />
             <field optional="show" name="x_studio_condicion_de_pago" />
-            <field optional="show" name="x_studio_importe" options="{&quot;hide_trailing_zeros&quot;:false,&quot;no_symbol&quot;:false}" sum="Suma de Importe" required="True" />
+            <field optional="show" name="x_studio_importe" string="Importe" options="{&quot;hide_trailing_zeros&quot;:false,&quot;no_symbol&quot;:false}" sum="Suma de Importe" required="True" />
             <field optional="show" name="x_studio_many2one_field_6bn_1jv4afmc8" string="Impuestos" />
             <field optional="show" name="x_studio_currency_id" column_invisible="False" invisible="False" string="Moneda" />
             <field name="description" column_invisible="False" invisible="False" />
