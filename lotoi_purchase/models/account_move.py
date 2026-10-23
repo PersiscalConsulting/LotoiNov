@@ -5,9 +5,9 @@ class AccountMove(models.Model):
     _inherit = 'account.move'
 
     lotoi_fixed_currency_rate = fields.Boolean(
-        string='Fixed exchange rate',
+        string='Tipo de cambio fijo',
         copy=False,
-        help='The rate comes from the purchase order and must not follow the invoice date.',
+        help='El tipo de cambio viene de la orden de compra y no sigue la fecha de la factura.',
     )
 
     @api.depends('lotoi_fixed_currency_rate')

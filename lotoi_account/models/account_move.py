@@ -26,16 +26,16 @@ class AccountMove(models.Model):
     _inherit = 'account.move'
 
     lotoi_week_number = fields.Integer(
-        string='Week number',
+        string='Número de semana',
         compute='_compute_lotoi_week',
         store=True,
-        help='Saturday to Friday weeks, week 1 contains January 1st. Based on the invoice date.',
+        help='Semanas de sábado a viernes; la semana 1 es la que contiene el 1 de enero. Según la fecha de la factura.',
     )
     lotoi_week = fields.Char(
-        string='Week',
+        string='Semana',
         compute='_compute_lotoi_week',
         store=True,
-        help='Year and week number, e.g. 2026-S42.',
+        help='Año y número de semana, por ejemplo 2026-S42.',
     )
 
     @api.depends('invoice_date')

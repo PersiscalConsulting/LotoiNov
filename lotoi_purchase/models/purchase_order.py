@@ -11,15 +11,15 @@ class PurchaseOrder(models.Model):
 
     # The core rate is recomputed from the currency table; Lotoi needs to fix it
     # for a single order without touching the general rate.
-    lotoi_manual_currency_rate = fields.Boolean(string='Manual exchange rate', copy=False)
+    lotoi_manual_currency_rate = fields.Boolean(string='Tipo de cambio manual', copy=False)
     lotoi_manual_rate_currency_id = fields.Many2one('res.currency', copy=False)
     lotoi_exchange_rate = fields.Float(
-        string='Exchange rate',
+        string='Tipo de cambio',
         digits=(16, 4),
         compute='_compute_lotoi_exchange_rate',
         inverse='_inverse_lotoi_exchange_rate',
-        help='Company currency units per one unit of the order currency. '
-             'Changing it only affects this order and the bills made from it.',
+        help='Pesos por cada unidad de la moneda de la orden. '
+             'Si lo cambiás, solo afecta a esta orden y a las facturas que se hagan desde ella.',
     )
 
     def _lotoi_has_manual_rate(self):

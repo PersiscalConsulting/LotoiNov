@@ -1,6 +1,6 @@
 {
     'name': 'Lotoi - Accounting',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Accounting',
     'summary': 'Lotoi week numbering (Saturday to Friday) on invoices.',
     'description': """
