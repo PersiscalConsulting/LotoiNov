@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Every work is an analytic account of this plan. -->
+    <record id="analytic_plan_obras" model="account.analytic.plan">
+        <field name="name">Obras</field>
+    </record>
+</odoo>

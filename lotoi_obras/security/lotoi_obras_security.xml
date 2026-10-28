@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- The only users who can create works (analytic accounts of the "Obras" plan). -->
+    <record id="group_obra_manager" model="res.groups">
+        <field name="name">Gestor de obras</field>
+        <field name="implied_ids" eval="[(4, ref('analytic.group_analytic_accounting'))]"/>
+    </record>
+</odoo>

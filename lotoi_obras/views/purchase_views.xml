@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Purchase agreement: the "Referencia" text is replaced by the selection of the works. -->
+    <record id="lotoi_view_purchase_requisition_form_obras" model="ir.ui.view">
+        <field name="name">lotoi.purchase.requisition.form.obras</field>
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reference']" position="before">
+                <field name="lotoi_obra_id" string="Referencia"
+                       options="{'no_create': True, 'no_quick_create': True, 'no_open': True}"/>
+            </xpath>
+            <xpath expr="//field[@name='reference']" position="attributes">
+                <attribute name="invisible">True</attribute>
+                <attribute name="required">False</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Purchase order: takes the work from the agreement and can be set by hand without one. -->
+    <record id="lotoi_purchase_order_form_obras" model="ir.ui.view">
+        <field name="name">lotoi.purchase.order.form.obras</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ref']" position="after">
+                <field name="lotoi_obra_id" string="Referencia"
+                       readonly="state in ('cancel', 'done')"
+                       options="{'no_create': True, 'no_quick_create': True, 'no_open': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
