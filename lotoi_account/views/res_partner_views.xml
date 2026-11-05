@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="lotoi_view_partner_property_form_expense_account" model="ir.ui.view">
+        <field name="name">lotoi_account_partner_expense_account</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_account_payable_id']" position="after">
+                <field name="lotoi_expense_account_id" string="Cuenta de gasto"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
