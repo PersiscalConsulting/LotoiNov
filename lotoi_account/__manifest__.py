@@ -1,6 +1,6 @@
 {
     'name': 'Lotoi - Accounting',
-    'version': '19.0.1.1.1',
+    'version': '19.0.1.1.2',
     'category': 'Accounting',
     'summary': 'Lotoi week numbering on invoices and expense account per vendor.',
     'description': """

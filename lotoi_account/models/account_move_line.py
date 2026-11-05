@@ -36,3 +36,14 @@ class AccountMoveLine(models.Model):
             'account_id',
             lambda line: bool(line._lotoi_vendor_expense_account()),
         )
+
+    @api.onchange('name')
+    def _onchange_zz_lotoi_vendor_account(self):
+        # Odoo (Enterprise) predicts the account from the label as it is typed and
+        # replaces the one of the vendor. Onchange methods of a field run in
+        # alphabetical order of their name, so the 'zz' makes this one run last
+        # and put the vendor account back.
+        for line in self:
+            account = line._lotoi_vendor_expense_account()
+            if account:
+                line.account_id = account
