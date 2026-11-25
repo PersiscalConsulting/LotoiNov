@@ -1,1 +1,1 @@
-# LotoiNov
+# Lotoi

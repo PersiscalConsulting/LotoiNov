@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Replaces the "Odoo Studio: hr.expense.view.form customization" view. -->
+    <record id="hr_expense_view_form_lotoi" model="ir.ui.view">
+        <field name="name">hr.expense.view.form.lotoi</field>
+        <field name="model">hr.expense</field>
+        <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+        <field name="arch" type="xml">
+            <!-- The tax amount can be edited by hand. -->
+            <xpath expr="//field[@name='tax_amount_currency']" position="attributes">
+                <attribute name="force_save">0</attribute>
+                <attribute name="readonly">False</attribute>
+            </xpath>
+            <!-- Work code of the expense. -->
+            <xpath expr="//field[@name='date']" position="before">
+                <field name="x_studio_reference"/>
+            </xpath>
+            <!-- Lotoi does not use the manager field on the expense. -->
+            <xpath expr="//field[@name='manager_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Replaces the "Odoo Studio: hr.expense.list customization" view. -->
+    <record id="view_my_expenses_tree_lotoi" model="ir.ui.view">
+        <field name="name">hr.expense.list.lotoi</field>
+        <field name="model">hr.expense</field>
+        <field name="inherit_id" ref="hr_expense.view_my_expenses_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="x_studio_reference" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

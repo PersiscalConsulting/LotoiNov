@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Replaces "Odoo Studio: approval.request.view.form customization". -->
+    <record id="lotoi_approval_request_view_form" model="ir.ui.view">
+        <field name="name">lotoi_approval_request_view_form</field>
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+        <field name="arch" type="xml">
+<data>
+        <xpath expr="/form/header" position="before">
+          <header />
+        </xpath>
+        <xpath expr="/form/header[2]/widget[@name='attach_document']" position="replace" />
+        <xpath expr="/form//field[@name='request_status']" position="after">
+          <button string="Pago" type="object" name="action_lotoi_register_payment" groups="approvals.group_approval_manager" />
+        </xpath>
+        <xpath expr="/form/header[2]/button[@name='action_confirm'][2]" position="attributes">
+          <attribute name="invisible">False</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='category_image']" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='name']" position="attributes">
+          <attribute name="options">{"placeholder_field":"x_studio_char_field_2g0_1jsp9e4ep"}</attribute>
+          <attribute name="placeholder">obligatorio</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='approval_properties']" position="replace" />
+        <xpath expr="/form//field[@name='category_id']" position="after">
+          <field name="x_studio_boolean_field_5ec_1jrvqjeec" widget="boolean" invisible="True" string="Origen OC" />
+        </xpath>
+        <xpath expr="/form/sheet/group/group[@name='request_main']/label[@for='date_start']" position="replace">
+          <field name="x_studio_estado_1" groups="approvals.group_approval_manager" />
+          <xpath expr="/form//field[@name='reference']" position="move" />
+        </xpath>
+        <xpath expr="/form//field[@name='location']" position="replace" />
+        <xpath expr="/form//group[@name='request_main']" position="attributes">
+          <attribute name="invisible">False</attribute>
+        </xpath>
+        <xpath expr="/form//label[@for='date']" position="attributes">
+          <attribute name="string">Fecha de pago</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='date']" position="attributes">
+          <attribute name="options">{"show_time":false}</attribute>
+          <attribute name="placeholder">obligatorio</attribute>
+          <attribute name="widget">datetime</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='reference']" position="attributes">
+          <attribute name="invisible">True</attribute>
+          <attribute name="required">False</attribute>
+        </xpath>
+        <xpath expr="/form//label[@for='date_start']" position="replace" />
+        <xpath expr="/form//field[@name='date_start']" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </xpath>
+        <xpath expr="/form//label[@for='date_end']" position="replace" />
+        <xpath expr="/form//field[@name='date_end']" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='quantity']" position="after">
+          <xpath expr="/form//field[@name='partner_id']" position="move" />
+        </xpath>
+        <xpath expr="/form//field[@name='amount']" position="after">
+          <field widget="file" filename="x_studio_adjuntar_archivo_filename" name="x_studio_adjuntar_archivo" invisible="category_id in [3, 5]" string="Archivos adicionales" />
+          <field widget="file" invisible="True" name="x_studio_adjuntar_archivo_filename" />
+        </xpath>
+        <xpath expr="/form//field[@name='partner_id']" position="attributes">
+          <attribute name="domain">[]</attribute>
+          <attribute name="force_save">0</attribute>
+          <attribute name="invisible">True</attribute>
+          <attribute name="options">{"search_threshold":0}</attribute>
+          <attribute name="readonly">False</attribute>
+          <attribute name="required">False</attribute>
+          <attribute name="string">Empleado</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='amount']" position="attributes">
+          <attribute name="invisible">False</attribute>
+          <attribute name="options">{}</attribute>
+          <attribute name="required">True</attribute>
+          <attribute name="widget">float</attribute>
+        </xpath>
+        <xpath expr="/form//page[@name='description']" position="replace" />
+        <xpath expr="/form//page[@name='approvers']" position="after">
+          <page string="Reintegro empleados" name="studio_page_7cg_1jsplftsc" invisible="category_id in [3, 5, 8]">
+            <field name="x_studio_one2many_field_940_1jsplgfm1" string="Product Line">
+              <list editable="bottom" string="Products">
+                <field optional="show" name="x_studio_many2one_field_2l3_1jspljlkj" string="Empleado" />
+                <field name="approval_request_id" column_invisible="True" />
+                <field name="company_id" column_invisible="True" />
+                <field name="product_id" column_invisible="True" />
+                <field name="description" />
+                <field optional="show" name="x_studio_importe_1" string="Importe" sum="Suma de Importe" />
+                <field optional="show" name="x_studio_reference" />
+                <field name="x_studio_currency_id" column_invisible="True" />
+                <field widget="file" optional="show" filename="x_studio_archivo_filename" name="x_studio_archivo" string="Archivo" />
+                <field widget="file" optional="show" invisible="False" name="x_studio_archivo_filename" column_invisible="True" />
+              </list>
+            </field>
+          </page>
+          <page string="Adelantos / Prestamos" name="studio_page_6pe_1jsplptcq" invisible="category_id in [1, 5, 8]">
+            <field name="x_studio_one2many_field_3nj_1jsplsjig" string="Product Line">
+              <list editable="bottom" string="Products">
+                <field name="company_id" column_invisible="True" />
+                <field optional="show" name="x_studio_empleado" string="Empleado" width="170" />
+                <field name="description" width="250" />
+                <field optional="show" name="x_studio_importe_2" string="Importe" sum="Suma de Importe" />
+                <field optional="show" name="x_studio_cantidad_de_cuotas_1" string="Cantidad cuotas" />
+                <field optional="show" name="x_studio_ultimo_adelantoprestamo" />
+                <field name="x_studio_currency_id" column_invisible="True" />
+              </list>
+            </field>
+          </page>
+          <page string="Avance de obra" name="studio_page_8mi_1jsq0ctdt" invisible="category_id in [1, 3, 5]">
+            <field name="x_studio_product_line" string="Avance de obra">
+              <list default_order="x_studio_sequence asc,id desc" duplicate="false" editable="bottom">
+                <field name="x_studio_sequence" widget="handle" />
+                <field optional="show" name="x_studio_destinatario" />
+                <field optional="show" name="x_studio_fc" />
+                <field optional="show" name="x_studio_forma_de_pago" />
+                <field optional="show" name="x_studio_condicion_de_pago" />
+                <field name="x_name" />
+                <field optional="show" name="x_studio_importe" string="Importe" sum="Suma de Importe" />
+                <field optional="show" name="x_studio_liberando" />
+                <field optional="show" name="x_studio_acumulando" />
+                <field optional="show" name="x_studio_obra" />
+                <field widget="file" optional="show" filename="x_studio_archivo_filename" name="x_studio_archivo" string="Archivo" />
+                <field widget="file" optional="show" invisible="False" name="x_studio_archivo_filename" column_invisible="True" />
+                <field name="x_studio_currency_id" column_invisible="True" />
+              </list>
+            </field>
+          </page>
+        </xpath>
+        <xpath expr="/form//page[@name='products']" position="attributes">
+          <attribute name="string">Detalle</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='product_line_ids']" position="inside">
+          <list editable="bottom" string="Products" decoration-danger="has_no_seller">
+            <field name="company_id" column_invisible="True" />
+            <field name="product_id" required="False" context="{'search_default_filter_to_purchase': 1}" string="Nombre" column_invisible="True" />
+            <field optional="show" name="x_studio_many2one_field_858_1js9r52nm" string="Proveedor" />
+            <field optional="show" name="x_studio_n_fc" />
+            <field optional="show" name="x_studio_medio_de_pago" invisible="False" required="False" column_invisible="False" />
+            <field optional="show" name="x_studio_condicion_de_pago" />
+            <field optional="show" name="x_studio_importe" string="Importe" options="{&quot;hide_trailing_zeros&quot;:false,&quot;no_symbol&quot;:false}" sum="Suma de Importe" required="True" />
+            <field optional="show" name="x_studio_many2one_field_6bn_1jv4afmc8" string="Impuestos" />
+            <field optional="show" name="x_studio_currency_id" column_invisible="False" invisible="False" string="Moneda" />
+            <field name="description" column_invisible="False" invisible="False" />
+            <field name="x_studio_reference" optional="show" readonly="False" invisible="False" column_invisible="False" />
+            <field optional="show" name="x_studio_referencia" string="Obra" column_invisible="True" />
+            <field widget="binary" optional="show" filename="x_studio_binary_field_3vq_1jrvi4piv_filename" name="x_studio_binary_field_3vq_1jrvi4piv" string="Archivo" />
+            <field widget="file" optional="show" filename="x_studio_cbu_filename" name="x_studio_cbu" />
+            <field widget="file" optional="show" invisible="False" name="x_studio_binary_field_3vq_1jrvi4piv_filename" column_invisible="True" />
+          </list>
+          <form string="Products">
+            <sheet name="studio_sheet_f96818">
+              <group name="studio_group_2172ce">
+                <field name="company_id" invisible="1" />
+                <field name="product_id" />
+                <field name="description" />
+                <field name="quantity" />
+                <field name="product_uom_id" groups="uom.group_uom" widget="many2one_uom" />
+              </group>
+            </sheet>
+          </form>
+        </xpath>
+        <xpath expr="/form//field[@name='product_line_ids']" position="attributes">
+          <attribute name="force_save">0</attribute>
+          <attribute name="readonly">False</attribute>
+          <attribute name="string">Product Line</attribute>
+        </xpath>
+        <xpath expr="/form//page[@name='approvers']" position="attributes">
+          <attribute name="invisible">True</attribute>
+        </xpath>
+      </data>
+        </field>
+    </record>
+    <!-- Replaces "Odoo Studio: approval.request.view.list customization". -->
+    <record id="lotoi_approval_request_view_tree" model="ir.ui.view">
+        <field name="name">lotoi_approval_request_view_tree</field>
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals.approval_request_view_tree"/>
+        <field name="arch" type="xml">
+<data>
+        <xpath expr="/list//field[@name='name']" position="before">
+          <header>
+    </header>
+        </xpath>
+        <xpath expr="/list//field[@name='name']" position="after">
+          <field name="date" optional="show" widget="datetime" options="{&quot;show_time&quot;:false}" string="Fecha De Pago" />
+          <field optional="show" name="x_studio_related_field_3r6_1juvp20kp" string="Reference " />
+        </xpath>
+        <xpath expr="/list//field[@name='category_id']" position="after">
+          <field name="amount" optional="show" />
+        </xpath>
+        <xpath expr="/list//field[@name='request_status']" position="after">
+          <field optional="show" name="x_studio_related_field_i5_1jtolsuit" />
+          <field name="x_studio_estado_1" optional="show" />
+          <field name="x_studio_estado" optional="show" string="Estado de Pago" widget="selection" options="{&quot;color_field&quot;:&quot;purchase_order_count&quot;}" column_invisible="True" />
+        </xpath>
+        <xpath expr="/list//field[@name='date_start']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+        </xpath>
+        <xpath expr="/list//field[@name='date_end']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+        </xpath>
+      </data>
+        </field>
+    </record>
+    <!-- Replaces "Odoo Studio: approval.request.view.kanban customization". -->
+    <record id="lotoi_approval_request_view_kanban" model="ir.ui.view">
+        <field name="name">lotoi_approval_request_view_kanban</field>
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals.approval_request_view_kanban"/>
+        <field name="arch" type="xml">
+<data>
+        <xpath expr="/kanban/templates" position="inside">
+          <t t-name="card" class="row g-0">
+            <main class="col-10" />
+          </t>
+        </xpath>
+        <xpath expr="/kanban/templates/t[@t-name='card'][2]/main" position="inside">
+          <xpath expr="/kanban/templates/t[@t-name='card']" position="move" />
+        </xpath>
+        <xpath expr="/kanban/templates/t[@t-name='card']/main/t[@t-name='card']/footer" position="replace" />
+        <xpath expr="/kanban/templates/t[@t-name='card']/main/t[@t-name='card']" position="attributes">
+          <attribute name="t-name" />
+        </xpath>
+      </data>
+        </field>
+    </record>
+</odoo>

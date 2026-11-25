@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Replaces "Odoo Studio: purchase.requisition.form customization". -->
+    <record id="lotoi_view_purchase_requisition_form" model="ir.ui.view">
+        <field name="name">lotoi_view_purchase_requisition_form</field>
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+        <field name="arch" type="xml">
+<data>
+        <xpath expr="//field[@name='vendor_id']" position="attributes">
+          <attribute name="force_save">0</attribute>
+          <attribute name="invisible">False</attribute>
+          <attribute name="readonly">False</attribute>
+          <attribute name="required">False</attribute>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="attributes">
+          <attribute name="string">Nombre</attribute>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="x_studio_selection_field_hc_1j3gn1aa6" string="Sector" required="True" options="{&quot;placeholder_field&quot;:&quot;name&quot;}" />
+        </xpath>
+        <xpath expr="//field[@name='requisition_type']" position="attributes">
+          <attribute name="options">{"no_create":true}</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/field[@name='currency_id']" position="attributes">
+          <attribute name="groups" />
+          <attribute name="invisible">True</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]" position="attributes">
+          <attribute name="invisible">False</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/label[1]" position="attributes">
+          <attribute name="string">Entrega estimada</attribute>
+        </xpath>
+        <xpath expr="//field[@name='date_start']" position="attributes">
+          <attribute name="force_save">0</attribute>
+          <attribute name="invisible">False</attribute>
+          <attribute name="readonly">False</attribute>
+          <attribute name="required">False</attribute>
+        </xpath>
+        <xpath expr="//field[@name='date_end']" position="attributes">
+          <attribute name="force_save">0</attribute>
+          <attribute name="invisible">False</attribute>
+          <attribute name="readonly">False</attribute>
+          <attribute name="required">False</attribute>
+        </xpath>
+        <xpath expr="//field[@name='reference']" position="after">
+          <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/field[@name='company_id']" position="move" />
+          <field name="x_studio_fecha_de_entrega" string="Fecha de Entrega" required="True" options="{&quot;placeholder_field&quot;:&quot;name&quot;}" />
+          <field name="x_studio_obra" />
+        </xpath>
+        <xpath expr="//field[@name='picking_type_id']" position="attributes">
+          <attribute name="groups" />
+          <attribute name="invisible">True</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='products']/field[@name='line_ids']/list[1]" position="attributes">
+          <attribute name="multi_edit">false</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='products']/field[@name='line_ids']/list[1]/field[@name='product_uom_id']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+          <attribute name="invisible">False</attribute>
+          <attribute name="required">False</attribute>
+          <attribute name="width">150</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='products']/field[@name='line_ids']/list[1]/field[@name='product_uom_id']" position="after">
+          <field optional="show" name="x_studio_unidades" width="100" column_invisible="False" invisible="False" />
+          <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='products']/field[@name='line_ids']/list[1]/field[@name='product_qty']" position="move" />
+          <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='products']/field[@name='line_ids']/list[1]/field[@name='qty_ordered']" position="move" />
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='products']/field[@name='line_ids']/list[1]/field[@name='analytic_distribution']" position="attributes">
+          <attribute name="column_invisible">False</attribute>
+          <attribute name="invisible">False</attribute>
+          <attribute name="width">15</attribute>
+        </xpath>
+        <xpath expr="//field[@name='price_unit']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+          <attribute name="invisible">False</attribute>
+          <attribute name="options">{"enable_formatting":false,"step":0}</attribute>
+          <attribute name="readonly">False</attribute>
+          <attribute name="required">False</attribute>
+          <attribute name="width">200</attribute>
+        </xpath>
+        <xpath expr="//field[@name='price_unit']" position="after">
+          <field optional="show" name="x_studio_date_field_79k_1j3e8cs07" required="True" string="Fecha de Entrega" width="1" column_invisible="True" />
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/field[@name='company_id']" position="attributes">
+          <attribute name="groups" />
+          <attribute name="invisible">False</attribute>
+          <attribute name="options">{"no_create":false}</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='products']/field[@name='line_ids']/list[1]/field[@name='product_qty']" position="attributes">
+          <attribute name="width">150</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='products']/field[@name='line_ids']/list[1]/field[@name='qty_ordered']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+          <attribute name="invisible">False</attribute>
+          <attribute name="width">1</attribute>
+        </xpath>
+      </data>
+        </field>
+    </record>
+    <!-- Replaces "Odoo Studio: purchase.requisition.list customization". -->
+    <record id="lotoi_view_purchase_requisition_tree" model="ir.ui.view">
+        <field name="name">lotoi_view_purchase_requisition_tree</field>
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_tree"/>
+        <field name="arch" type="xml">
+<data>
+        <xpath expr="//field[@name='date_start']" position="replace" />
+        <xpath expr="//list[1]" position="attributes">
+          <attribute name="multi_edit">false</attribute>
+        </xpath>
+        <xpath expr="//field[@name='message_needaction']" position="before">
+          <header />
+        </xpath>
+        <xpath expr="//field[@name='message_needaction']" position="after">
+          <field widget="priority" optional="show" name="x_studio_prioridad" width="70" />
+        </xpath>
+        <xpath expr="//list[1]/field[@name='name']" position="after">
+          <field name="x_studio_selection_field_hc_1j3gn1aa6" optional="show" widget="selection" />
+        </xpath>
+        <xpath expr="//field[@name='vendor_id']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+        </xpath>
+        <xpath expr="//field[@name='requisition_type']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="attributes">
+          <attribute name="string">Nombre</attribute>
+          <attribute name="width">150</attribute>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="product_id" optional="show" />
+          <field name="x_studio_fecha_de_entrega" string="Fecha de Entrega" optional="show" width="150" />
+        </xpath>
+        <xpath expr="//field[@name='date_end']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+          <attribute name="invisible">False</attribute>
+        </xpath>
+        <xpath expr="//field[@name='activity_exception_decoration']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+        </xpath>
+      </data>
+        </field>
+    </record>
+    <!-- Replaces "Odoo Studio: purchase.requisition.list.select customization". -->
+    <record id="lotoi_view_purchase_requisition_filter" model="ir.ui.view">
+        <field name="name">lotoi_view_purchase_requisition_filter</field>
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_filter"/>
+        <field name="arch" type="xml">
+<data>
+        <xpath expr="//field[@name='user_id']" position="replace" />
+        <xpath expr="//field[@name='vendor_id']" position="replace" />
+      </data>
+        </field>
+    </record>
+    <!-- Replaces "Odoo Studio: purchase.order.form customization". -->
+    <record id="lotoi_purchase_order_form" model="ir.ui.view">
+        <field name="name">lotoi_purchase_order_form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+<data>
+        <xpath expr="/form//button[@name='print_quotation']" position="replace" />
+        <xpath expr="/form/sheet/group/group/field[@name='partner_id']" position="attributes">
+          <attribute name="force_save">0</attribute>
+          <attribute name="readonly">False</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/group/group/field[@name='currency_id'][2]" position="attributes">
+          <attribute name="invisible">False</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list/button[@name='action_product_forecast_report'][2]" position="after">
+          <field optional="show" name="x_studio_many2one_field_4sr_1j4ks5e81" string="Unidades" width="150" column_invisible="True" />
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='qty_received']" position="after">
+          <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='product_uom_id']" position="move" />
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='price_unit']" position="after">
+          <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='discount']" position="move" />
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='tax_ids']" position="after">
+          <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='tax_calculation_rounding_method']" position="move" />
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list" position="attributes">
+          <attribute name="default_order">sequence asc</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='display_type']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='company_id']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='currency_id']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='state']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='product_type']" position="attributes">
+          <attribute name="string">Product Type1</attribute>
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='invoice_lines']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='product_id']" position="attributes">
+          <attribute name="width">250</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='name']" position="attributes">
+          <attribute name="width">150</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='date_planned']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='move_dest_ids']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='propagate_cancel']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='analytic_distribution']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='product_qty']" position="attributes">
+          <attribute name="width">70</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='forecasted_issue']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='qty_received_manual']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='qty_received_method']" position="attributes">
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='qty_received']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+          <attribute name="invisible">False</attribute>
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='product_uom_id']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+          <attribute name="domain">[("name", "!=", False)]</attribute>
+          <attribute name="invisible">False</attribute>
+          <attribute name="readonly">False</attribute>
+          <attribute name="required">False</attribute>
+          <attribute name="width">150</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='qty_invoiced']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+          <attribute name="invisible">False</attribute>
+          <attribute name="width">1</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='price_unit']" position="attributes">
+          <attribute name="readonly">False</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='discount']" position="attributes">
+          <attribute name="optional">show</attribute>
+          <attribute name="options">{"human_readable":true}</attribute>
+          <attribute name="readonly">False</attribute>
+          <attribute name="required">False</attribute>
+          <attribute name="string">% Desc</attribute>
+          <attribute name="width">70px</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='tax_ids']" position="attributes">
+          <attribute name="width">70</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[@name='products']/field[@name='order_line']/list//field[@name='tax_calculation_rounding_method']" position="attributes">
+          <attribute name="invisible">False</attribute>
+          <attribute name="width">1</attribute>
+        </xpath>
+      </data>
+        </field>
+    </record>
+    <!-- Replaces "Odoo Studio: purchase.order.inherit.purchase.order.list customization". -->
+    <record id="lotoi_purchase_order_kpis_tree" model="ir.ui.view">
+        <field name="name">lotoi_purchase_order_kpis_tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+<data>
+        <xpath expr="//field[@name='priority']" position="attributes">
+          <attribute name="width">15</attribute>
+        </xpath>
+        <xpath expr="//list[1]/field[@name='name']" position="after">
+          <xpath expr="//field[@name='partner_ref']" position="move" />
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="attributes">
+          <attribute name="string">Solicitado por</attribute>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field optional="show" name="x_studio_reference" string="Reference" />
+        </xpath>
+        <xpath expr="//field[@name='activity_ids']" position="after">
+          <field name="currency_id" width="70" />
+        </xpath>
+      </data>
+        </field>
+    </record>
+    <!-- Replaces "Odoo Studio: purchase.order.view.list customization". -->
+    <record id="lotoi_purchase_order_view_tree" model="ir.ui.view">
+        <field name="name">lotoi_purchase_order_view_tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+        <field name="arch" type="xml">
+<data>
+        <xpath expr="//field[@name='priority']" position="attributes">
+          <attribute name="width">30</attribute>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field optional="show" name="x_studio_reference_1" string="Reference" />
+        </xpath>
+        <xpath expr="//field[@name='invoice_status']" position="attributes">
+          <attribute name="column_invisible">True</attribute>
+        </xpath>
+      </data>
+        </field>
+    </record>
+    <!-- Replaces "Odoo Studio: purchase.order.select customization". -->
+    <record id="lotoi_purchase_order_view_search" model="ir.ui.view">
+        <field name="name">lotoi_purchase_order_view_search</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search"/>
+        <field name="arch" type="xml">
+<data>
+        <xpath expr="//field[@name='activity_type_id']" position="replace" />
+        <xpath expr="//field[@name='activity_user_id']" position="replace" />
+        <xpath expr="//field[@name='user_id']" position="replace" />
+        <xpath expr="//field[@name='partner_id']" position="replace" />
+        <xpath expr="//search[1]/field[@name='name']" position="before">
+          <field name="x_studio_reference_1" string="Reference" />
+        </xpath>
+      </data>
+        </field>
+    </record>
+    <!-- Replaces "Odoo Studio: request.quotation.select customization". -->
+    <record id="lotoi_view_purchase_order_filter" model="ir.ui.view">
+        <field name="name">lotoi_view_purchase_order_filter</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+<data>
+        <xpath expr="//field[@name='origin']" position="replace" />
+        <xpath expr="//field[@name='requisition_id']" position="replace" />
+        <xpath expr="//field[@name='user_id']" position="replace" />
+        <xpath expr="//field[@name='partner_id']" position="replace" />
+        <xpath expr="//search[1]/field[@name='name']" position="before">
+          <field name="x_studio_reference_1" string="Reference" />
+        </xpath>
+      </data>
+        </field>
+    </record>
+</odoo>

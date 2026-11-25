@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- The model is looked up by name: in the migrated database it already
+         exists (it was created with Studio) under another external id. -->
+    <record id="access_x_approval_request_line_6a5e3_user" model="ir.model.access">
+        <field name="name">x_approval_request_line_6a5e3 user</field>
+        <field name="model_id" search="[('model', '=', 'x_approval_request_line_6a5e3')]"/>
+        <field name="group_id" ref="approvals.group_approval_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <record id="access_x_approval_request_line_6a5e3_manager" model="ir.model.access">
+        <field name="name">x_approval_request_line_6a5e3 manager</field>
+        <field name="model_id" search="[('model', '=', 'x_approval_request_line_6a5e3')]"/>
+        <field name="group_id" ref="approvals.group_approval_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

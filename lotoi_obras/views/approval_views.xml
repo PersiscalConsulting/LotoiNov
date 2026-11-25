@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Approval lines: the "Referencia" text of the two line lists becomes a selection of the works. -->
+    <record id="lotoi_approval_request_view_form_obras" model="ir.ui.view">
+        <field name="name">lotoi.approval.request.form.obras</field>
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='x_studio_reference']" position="replace">
+                <field name="lotoi_obra_id" string="Referencia" optional="show"
+                       options="{'no_create': True, 'no_quick_create': True, 'no_open': True}"/>
+            </xpath>
+            <xpath expr="//field[@name='x_studio_reference']" position="replace">
+                <field name="lotoi_obra_id" string="Referencia" optional="show"
+                       options="{'no_create': True, 'no_quick_create': True, 'no_open': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
