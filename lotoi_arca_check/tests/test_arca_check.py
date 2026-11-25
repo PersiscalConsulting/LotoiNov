@@ -77,3 +77,11 @@ class TestArcaCheck(AccountTestInvoicingCommon):
         pay = self._payment(self._partner('20000000117'))
         with patch(CHECK, side_effect=AssertionError('no debe consultar ARCA')):
             pay.action_post()
+
+    def test_empty_cached_status_is_not_trusted(self):
+        """Un resultado guardado sin estado (por ejemplo del boton) no debe saltear la consulta."""
+        partner = self._partner('20000000117')
+        partner.write({'lotoi_arca_checked_at': self.env.cr.now(), 'lotoi_arca_status': False})
+        pay = self._payment(partner)
+        with patch(CHECK, _answer('not_found')), self.assertRaises(UserError):
+            pay.action_post()

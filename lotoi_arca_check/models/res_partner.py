@@ -39,7 +39,7 @@ class ResPartner(models.Model):
         """Consulta ARCA si el ultimo resultado es viejo (o con force). Devuelve el estado."""
         self.ensure_one()
         hours = float(self.env['ir.config_parameter'].sudo().get_param('lotoi_arca_check.max_age_hours', '24'))
-        fresh = (self.lotoi_arca_checked_at and self.lotoi_arca_status != 'error'
+        fresh = (self.lotoi_arca_checked_at and self.lotoi_arca_status and self.lotoi_arca_status != 'error'
                  and self.lotoi_arca_checked_at > fields.Datetime.now() - timedelta(hours=hours))
         if force or not fresh:
             vat = arca_ws.digits(self.vat)
