@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_lotoi_arca" model="ir.ui.view">
+        <field name="name">res.partner.form.lotoi.arca</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="vat" position="after">
+                <field name="lotoi_arca_status" readonly="1" invisible="not lotoi_arca_checked_at"/>
+                <field name="lotoi_arca_message" readonly="1" invisible="not lotoi_arca_message"/>
+                <field name="lotoi_arca_checked_at" readonly="1" invisible="not lotoi_arca_checked_at"/>
+                <button name="action_lotoi_arca_check" type="object" string="Consultar en ARCA"
+                        class="btn-link" invisible="not vat"/>
+            </field>
+        </field>
+    </record>
+</odoo>

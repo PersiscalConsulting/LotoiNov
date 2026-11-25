@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_override" model="res.groups">
+        <field name="name">Autorizar pagos a proveedores con CUIT inactivo</field>
+        <field name="comment">Puede confirmar un pago aunque ARCA informe el CUIT del proveedor como inactivo, inexistente o con la constancia caída. Queda registrado en el pago.</field>
+    </record>
+</odoo>
