@@ -9,9 +9,10 @@ STATUS = [
     ('inactive', 'CUIT inactivo'),
     ('not_found', 'CUIT inexistente'),
     ('constancia_error', 'Constancia con errores'),
+    ('invalid', 'CUIT mal cargado'),
     ('error', 'No se pudo consultar'),
 ]
-BLOCKING = ('inactive', 'not_found', 'constancia_error')
+BLOCKING = ('inactive', 'not_found', 'constancia_error', 'invalid')
 
 
 class ResPartner(models.Model):
@@ -22,10 +23,17 @@ class ResPartner(models.Model):
     lotoi_arca_checked_at = fields.Datetime(string='Consultado en ARCA', readonly=True, copy=False)
 
     def _lotoi_arca_applies(self):
-        """Solo se controlan contactos argentinos con un CUIT de 11 digitos."""
+        """Se controlan contactos argentinos con CUIT/CUIL (o con 11 digitos).
+
+        Un CUIT cargado con otra cantidad de digitos tambien entra al control (queda como
+        'invalid' y bloquea), para que un dato mal cargado no permita pagar sin aviso.
+        """
         self.ensure_one()
         vat = arca_ws.digits(self.vat)
-        return len(vat) == 11 and (not self.country_id or self.country_id.code == 'AR')
+        if not vat or (self.country_id and self.country_id.code != 'AR'):
+            return False
+        code = self.l10n_latam_identification_type_id.l10n_ar_afip_code if 'l10n_latam_identification_type_id' in self._fields else False
+        return len(vat) == 11 or code in ('80', '86')
 
     def _lotoi_arca_refresh(self, force=False):
         """Consulta ARCA si el ultimo resultado es viejo (o con force). Devuelve el estado."""
@@ -34,7 +42,12 @@ class ResPartner(models.Model):
         fresh = (self.lotoi_arca_checked_at and self.lotoi_arca_status != 'error'
                  and self.lotoi_arca_checked_at > fields.Datetime.now() - timedelta(hours=hours))
         if force or not fresh:
-            res = self.env['lotoi.arca.check'].check_cuit(self.vat)
+            vat = arca_ws.digits(self.vat)
+            if len(vat) != 11:
+                res = {'status': 'invalid', 'name': '',
+                       'message': _('El CUIT cargado tiene %s dígitos (deben ser 11). Corregirlo antes de pagar.', len(vat))}
+            else:
+                res = self.env['lotoi.arca.check'].check_cuit(self.vat)
             self.sudo().write({'lotoi_arca_status': res['status'], 'lotoi_arca_message': res['message'],
                                'lotoi_arca_checked_at': fields.Datetime.now()})
         return self.lotoi_arca_status
