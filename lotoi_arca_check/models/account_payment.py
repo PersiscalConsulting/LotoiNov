@@ -7,6 +7,13 @@ from .res_partner import BLOCKING, STATUS
 class AccountPayment(models.Model):
     _inherit = 'account.payment'
 
+    def _lotoi_arca_is_employee(self, partner):
+        """Los reintegros a empleados no se controlan (su CUIL no es el de un proveedor)."""
+        employee = self.env.get('hr.employee')
+        if employee is None or 'work_contact_id' not in employee._fields:
+            return False
+        return bool(employee.sudo().search_count([('work_contact_id', '=', partner.id)]))
+
     def _lotoi_arca_control(self):
         icp = self.env['ir.config_parameter'].sudo()
         if icp.get_param('lotoi_arca_check.enabled', '1') in ('0', 'False', 'false'):
@@ -17,7 +24,7 @@ class AccountPayment(models.Model):
         for pay in self.filtered(lambda p: p.state == 'draft' and p.payment_type == 'outbound'
                                  and p.partner_type == 'supplier' and p.partner_id):
             partner = pay.partner_id.commercial_partner_id
-            if partner.supplier_rank <= 0 or not partner._lotoi_arca_applies():
+            if not partner._lotoi_arca_applies() or self._lotoi_arca_is_employee(partner):
                 continue
             if partner.id not in checked:
                 checked[partner.id] = partner._lotoi_arca_refresh()

@@ -1,6 +1,6 @@
 {
     'name': 'Lotoi - Control de proveedores en ARCA',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Accounting/Localizations',
     'summary': 'Blocks supplier payments when the supplier CUIT is inactive or its constancia failed in ARCA.',
     'description': """
