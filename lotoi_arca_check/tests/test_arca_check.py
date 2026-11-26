@@ -85,3 +85,21 @@ class TestArcaCheck(AccountTestInvoicingCommon):
         pay = self._payment(partner)
         with patch(CHECK, _answer('not_found')), self.assertRaises(UserError):
             pay.action_post()
+
+    def test_blocks_payment_registered_from_bill(self):
+        """El asistente "Pagar" de la factura crea el pago en 'in_process' antes de confirmarlo."""
+        partner = self._partner('20000000117')
+        bill = self.init_invoice('in_invoice', partner=partner, amounts=[50.0], post=True)
+        journal = self.company_data['default_journal_bank']
+        method_line = journal.outbound_payment_method_line_ids[:1]
+        method_line.payment_account_id = self.env['account.account'].create({
+            'name': 'Pagos pendientes prueba ARCA', 'code': 'ARCA.TEST',
+            'account_type': 'asset_current', 'reconcile': True,
+        })
+        wizard = self.env['account.payment.register'].with_context(
+            active_model='account.move', active_ids=bill.ids,
+        ).create({'journal_id': journal.id, 'payment_method_line_id': method_line.id})
+        with patch(CHECK, _answer('not_found')), self.assertRaises(UserError):
+            wizard.action_create_payments()
+        self.assertEqual(bill.payment_state, 'not_paid')
+

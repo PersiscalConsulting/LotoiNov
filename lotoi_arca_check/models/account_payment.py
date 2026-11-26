@@ -21,7 +21,9 @@ class AccountPayment(models.Model):
         can_override = self.env.user.has_group('lotoi_arca_check.group_override')
         status_names = dict(STATUS)
         blocked, checked = {}, {}
-        for pay in self.filtered(lambda p: p.state == 'draft' and p.payment_type == 'outbound'
+        # Un pago creado desde la factura (asistente "Pagar") llega a action_post ya en
+        # 'in_process', porque Odoo genera el asiento al crearlo: no alcanza con mirar borradores.
+        for pay in self.filtered(lambda p: p.state in (False, 'draft', 'in_process') and p.payment_type == 'outbound'
                                  and p.partner_type == 'supplier' and p.partner_id):
             partner = pay.partner_id.commercial_partner_id
             if not partner._lotoi_arca_applies() or self._lotoi_arca_is_employee(partner):
